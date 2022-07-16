@@ -1,3 +1,5 @@
+//This application gets data from the page https://candystore.zimpler.net/ If the structure of the page is changed this application will not work.
+
 package main
 
 import (
