@@ -4,6 +4,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"sort"
 	"strconv"
 
 	"github.com/PuerkitoBio/goquery"
@@ -20,6 +21,9 @@ func main() {
 	defer html.Close()
 	topCustomers := parseHtml(html)
 
+	sort.Slice(topCustomers, func(firstIndex, secondIndex int) bool {
+		return topCustomers[firstIndex].TotalSnacks > topCustomers[secondIndex].TotalSnacks
+	})
 }
 
 func parseHtml(html io.ReadCloser) []TopCustomer {
