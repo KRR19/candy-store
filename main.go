@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -24,6 +26,9 @@ func main() {
 	sort.Slice(topCustomers, func(firstIndex, secondIndex int) bool {
 		return topCustomers[firstIndex].TotalSnacks > topCustomers[secondIndex].TotalSnacks
 	})
+
+	topCustomerJson, _ := json.MarshalIndent(topCustomers, "", " ")
+	fmt.Println(string(topCustomerJson))
 }
 
 func parseHtml(html io.ReadCloser) []TopCustomer {
